@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">	
+	
+	<head>		
+		<meta charset="utf-8">
+		
+		<!-- ADD THE PAGE TITLE BELOW -->
+		<title>JFK LOG</title>		                        
+
+        <link rel="stylesheet" href="styles/style.css" /> 
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+		<script src="js/json2.js"></script>
+		<script src="js/underscore.js"></script>
+		<script src="js/backbone-min.js"></script>
+		<script src="js/HTTPhelp.js"></script>
+		
+        <!--[if IE 6]>
+            <link rel="stylesheet" href="styles/ie6.css" />
+        <![endif]--> 
+        <!--[if IE 7]>
+            <link rel="stylesheet" href="styles/ie7.css" />
+        <![endif]--> 
+        <!--[if IE 8]>
+            <link rel="stylesheet" href="styles/ie8.css" />
+        <![endif]--> 
+        <!--[if IE 9]>
+            <link rel="stylesheet" href="styles/ie9.css" />
+        <![endif]-->    
+		
+		<script type="text/template" id="article_template">
+			<h2 id="article_title" class="title"><%= title %></h2> 
+			<p id="article_date" class="meta"><%= date %></p> 
+			<p id="article_content"><%= content %></p> 
+			<p id="article_tags"><%= tags %></p> 
+		</script>
+	</head> 
+	
+    <body> 	
+    	<div id="wrap"> 
+        	<div id="header"> 
+               	<div id="logo">                                 
+					<div id="logo_text">
+						<h1>JFK LOG</h1>
+					</div>
+					<div id="logo_quote">
+						<h2>"Put a quote here." A.Lincoln</h2>
+					</div>
+				</div>
+				
+				<!-- THIS IS THE NAVIGATION AREA - ADD ALL YOUR SITE'S PAGES HERE -->
+                <div id="nav">
+                	<ul>
+						<li><a href="index.html" title ="Link to the Home Page">Home</a><span>/</span></li>
+						<li><a href="bio.html" title ="Link to the Bio Page">Short Bio</a><span>/</span></li>
+						<li><a href="services.html" title ="Link to the Services Page">Services</a><span>/</span></li>
+						<li><a href="articles.html" title ="Link to the Articles Page" class="current">Articles</a><span>/</span></li>
+						<li><a href="contact.html" title ="Link to the Contact Page">Contact</a></li>
+					</ul>
+                </div><!--end nav-->
+            </div><!--end header-->	           
+            
+	        <div id="main">    
+				
+    			<div id="content"> 
+					<div id="prev_next">
+						<!-- article navigation will be here -->
+					</div>
+					
+        			<div id="article" class="article"> 
+						<!-- article content will be here -->
+					</div>
+                    <div class="line"></div> 
+					
+					<script src="js/article_logic.js"></script>
+				</div><!--end content--> 
+				
+				<div id="sidebar">
+					<div id="author-details">
+    					<h3><span class="status">Status: </span>[ADD YOUR CURRENT STATUS]</h3>
+        				<p>[ADD AN OVERVIEW ABOUT YOUR AREAS OF EXPERTISE]</p>  
+    				</div><!--end author-details-->
+    			</div><!--end sidebar-->
+				
+			</div><!--end main--> 
+    
+    		<div id="footer">
+    			<div class="footer-line"></div> 
+				<p class="copyright">Copyright &copy; 2012 &middot; All Rights Reserved</p> 
+			</div><!--end footer--> 
+		</div> <!--end wrap-->
+	</body>
+</html>
