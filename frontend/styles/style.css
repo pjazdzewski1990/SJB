@@ -32,7 +32,7 @@ p { margin: 0 0 15px 0; }
 /* -- Main Layout -- */
 /* ----------------- */
 #main { float: left; padding: 10px 0 0 0; width: 100%; margin: 40px 0 20px; }
-#content { float: left; width: 530px; padding: 0 100px 40px 2px; text-align: left; margin: -10px 0 0 0; }
+#content { float: left; width: 650px; padding: 0 40px 20px 2px; text-align: left; margin: -10px 0 0 0; }
 #sidebar { float: right; width: 250px; margin: -10px 0 0 0;  }
 #logo {background-color:#F34607; height:70px;}
 #logo_text{padding-top:10px;}
@@ -56,8 +56,8 @@ p { margin: 0 0 15px 0; }
 #nav li .current { color: #F34607; }
 
 #prev_next{ width:100%; padding-top:0px; padding-bottom:10px;}
-#previous_link{ width: 49%; float:left;}
-#next_link{ width: 49%; float:right;}
+#previous_link{ height:100%; width: 49%; float:left;}
+#next_link{ height:100%; width: 49%; float:right;}
 
 /* -------------- */
 /* -- Articles -- */
