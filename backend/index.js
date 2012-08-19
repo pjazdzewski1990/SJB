@@ -17,5 +17,9 @@ handle["/js/json2.js"] = {'get':handlers.js};
 handle["/js/backbone-min.js"] = {'get':handlers.js};
 
 handle["/images/main-bg.jpg"] = {'get':handlers.image};
+handle["/images/about.png"] = {'get':handlers.image};
+handle["/images/github.png"] = {'get':handlers.image};
+handle["/images/home.png"] = {'get':handlers.image};
+handle["/images/me.png"] = {'get':handlers.image};
 
 server.start(router.route, handle);
