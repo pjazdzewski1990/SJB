@@ -57,7 +57,7 @@ p { margin: 0 0 15px 0; }
 
 #prev_next{ width:100%; padding-top:0px; padding-bottom:10px;}
 #previous_link{ height:100%; width: 49%; float:left;}
-#next_link{ height:100%; width: 49%; float:right;}
+#next_link{ height:100%; float:right;}
 
 /* -------------- */
 /* -- Articles -- */
