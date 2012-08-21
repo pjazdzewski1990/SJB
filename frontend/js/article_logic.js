@@ -93,14 +93,3 @@ PrevNextView = Backbone.View.extend({
 		}
 	}
 });
-
-alert('start');
-var current_article_id = -1;
-
-var article_view = new ArticleView({ el: $("#article") });
-
-var prev_next_args = { el: $("#content"), observers: [article_view] };
-var prev_next_view = new PrevNextView(prev_next_args);
-
-var nav_args = { el: $("#nav"), observers: [article_view, prev_next_view] };
-var nav_view = new NavView(nav_args);

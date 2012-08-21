@@ -12,6 +12,7 @@ handle["/styles/reset.css"] = {'get':handlers.style};
 
 handle["/js/article_logic.js"] = {'get':handlers.js};
 handle["/js/nav_logic.js"] = {'get':handlers.js};
+handle["/js/global.js"] = {'get':handlers.js};
 handle["/js/underscore.js"] = {'get':handlers.js};
 handle["/js/HTTPhelp.js"] = {'get':handlers.js};
 handle["/js/json2.js"] = {'get':handlers.js};
