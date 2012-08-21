@@ -34,6 +34,31 @@
 			<p id="article_content"><%= content %></p> 
 			<p id="article_tags"><%= tags %></p> 
 		</script>
+		
+		<script type="text/template" id="nav_template">
+			<ul>
+				<li id="bookmark_home">
+					<a href="" title ="Home" id="bookmark_home_link">
+						<img src="images/home.png"></img>
+					</a>
+				</li>
+				<li id="bookmark_about">	
+					<a href="" title ="About this blog">
+						<img src="images/about.png"></img>
+					</a>
+				</li>
+				<li id="bookmark_me">
+					<a href="link to linkedIn profile" title ="Link to my linkedIn profile">
+						<img src="images/me.png"></img>
+					</a>
+				</li>
+				<li id="bookmark_github">
+					<a href="link to github profile" title ="Link to my github profile">
+						<img src="images/github.png"></img>
+					</a>
+				</li>
+			</ul>
+		</script>	
 	</head> 
 	
     <body> 	
@@ -50,29 +75,9 @@
 				
 				<!-- THIS IS THE NAVIGATION AREA - ADD ALL YOUR SITE'S PAGES HERE -->
                 <div id="nav">
-                	<ul>
-						<li id="bookmark_home">
-							<a href="" title ="Home">
-								<img src="images/home.png"></img>
-							</a>
-						</li>
-						<li id="bookmark_about">	
-							<a href="" title ="About this blog">
-								<img src="images/about.png"></img>
-							</a>
-						</li>
-						<li id="bookmark_me">
-							<a href="link to linkedIn profile" title ="Link to my linkedIn profile">
-								<img src="images/me.png"></img>
-							</a>
-						</li>
-						<li id="bookmark_github">
-							<a href="link to github profile" title ="Link to my github profile">
-								<img src="images/github.png"></img>
-							</a>
-						</li>
-					</ul>
+					<!-- navigation buttons will be put here -->
                 </div><!--end nav-->
+				<script src="js/nav_logic.js"></script>
             </div><!--end header-->	           
             
 	        <div id="main">    

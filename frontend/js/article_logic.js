@@ -11,9 +11,10 @@ ArticleView = Backbone.View.extend({
 		//render left only for rendering static view elements
 		
 		this.update();
+		
+		return this;
     },
 	update: function(){
-		alert("ArticleView update");
 		var article = getArticle(current_article_id);
 		var vars = {
 			title: 		article.title, 
@@ -23,20 +24,21 @@ ArticleView = Backbone.View.extend({
 		};
 		//set article id 
 		current_article_id = article.id;
-		alert("current_article_id" + current_article_id);
 		
 		// Compile the content template using underscore
         var template = _.template( $("#article_template").html(), vars );
         // Load the compiled HTML into the Backbone "el"
         this.el.html( template );
+		
+		return this;
 	}
 });
 
 //view respoonsible for rendering and handling next/prevoius article buttons
 PrevNextView = Backbone.View.extend({
-	content_view: null,		//Backbone view holding the "real" content
+	observers: null,		//Backbone views, like in observer desing pattern
 	initialize: function(){
-		_.bindAll(this, 'render', 'nextItem');
+		_.bindAll(this, 'render', 'nextItem', 'previousItem');
         
 		this.render();
     },
@@ -45,12 +47,13 @@ PrevNextView = Backbone.View.extend({
 	  'click #next_link': 'nextItem'
     },
 	render: function(){
-		alert('render naV ' + current_article_id);
 		//render nav
 		$(this.el).prepend("<a id='previous_link' href=''>Previous</a>");
 		$(this.el).prepend("<a id='next_link' href=''>Next</a>");
 	
 		this.update();
+		
+		return this;
     },
 	update: function(){
 		//update nav
@@ -67,27 +70,37 @@ PrevNextView = Backbone.View.extend({
 		}else{
 			elem.show();
 		}
+		
+		return this;
 	},
 	previousItem: function(){
-		alert("prev");
 		//show the next article
 		current_article_id = current_article_id - 1;
-		this.options.content_view.render();
+		this.notifyAll();
 		this.update();
 		return false;
 	},
 	nextItem: function(){
-		alert("next");
 		//show the next article
 		current_article_id = current_article_id + 1;
-		this.options.content_view.render();
+		this.notifyAll();
 		this.update();
 		return false;
+	},
+	notifyAll: function(){
+		for(i=0; i< this.options.observers.length; i++){
+			this.options.observers[i].update();
+		}
 	}
 });
 
 alert('start');
 var current_article_id = -1;
+
 var article_view = new ArticleView({ el: $("#article") });
-var prev_next_args = { el: $("#content"), content_view: article_view };
+
+var prev_next_args = { el: $("#content"), observers: [article_view] };
 var prev_next_view = new PrevNextView(prev_next_args);
+
+var nav_args = { el: $("#nav"), observers: [article_view, prev_next_view] };
+var nav_view = new NavView(nav_args);
