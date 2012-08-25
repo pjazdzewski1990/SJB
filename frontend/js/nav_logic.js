@@ -13,7 +13,7 @@ NavView = Backbone.View.extend({
 	render: function(){
 		//render nav
 		// Compile the content template using underscore
-        var template = _.template( $("#nav_template").html(), null );
+        var template = _.template( $("#nav_template").html(), {last_art_id:getArticle().id} );
         // Load the compiled HTML into the Backbone "el"
         this.el.html( template );
 	
@@ -34,9 +34,8 @@ NavView = Backbone.View.extend({
 	},
 	goHome: function(){
 		//show the next article
-		current_article_id = getArticle().id;
 		this.update();
-		this.notifyAll();
-		return false;
+		this.notifyAll(); //notify something if needed
+		return true;
 	}
 });

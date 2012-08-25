@@ -13,9 +13,9 @@
 		<script src="js/json2.js"></script>
 		<script src="js/underscore.js"></script>
 		<script src="js/backbone-min.js"></script>
-		<script src="js/HTTPhelp.js"></script>
 		<!-- Some important stuff here -->
 		<script src="js/global.js"></script>
+		<script src="js/HTTPhelp.js"></script>
 		
         <!--[if IE 6]>
             <link rel="stylesheet" href="styles/ie6.css" />
@@ -40,7 +40,7 @@
 		<script type="text/template" id="nav_template">
 			<ul>
 				<li id="bookmark_home">
-					<a href="" title ="Home" id="bookmark_home_link">
+					<a href="#<%= last_art_id %>" title ="Home" id="bookmark_home_link">
 						<img src="images/home.png"></img>
 					</a>
 				</li>
@@ -84,8 +84,9 @@
 	        <div id="main">    
 				
     			<div id="content"> 
-					
-					<!-- article navigation will be added here -->
+					<div id="article_nav">
+						<!-- article navigation will be added here -->
+					</div>
 					
 					<div class="line"></div> 
         			<div id="article" class="article"> 

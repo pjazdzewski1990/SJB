@@ -10,7 +10,7 @@ ArticleView = Backbone.View.extend({
 	render: function(){
 		//render left only for rendering static view elements
 		
-		this.update();
+		//this.update();
 		
 		return this;
     },
@@ -48,48 +48,73 @@ PrevNextView = Backbone.View.extend({
     },
 	render: function(){
 		//render nav
-		$(this.el).prepend("<a id='previous_link' href=''>Previous</a>");
-		$(this.el).prepend("<a id='next_link' href=''>Next</a>");
+		// ..nav is dynamic so we create it in update
 	
-		this.update();
+		//this.update();
 		
 		return this;
     },
 	update: function(){
 		//update nav
-		var elem = $("#previous_link"); 
-		if(current_article_id == 1){
-			elem.hide();
-		}else{
-			elem.show();
-		}
+		//start by cleaning
+		$(this.el).empty();
 		
-		elem = $("#next_link");
-		if(current_article_id == getArticle().id){
-			elem.hide();
+		//should we show link to previous?
+		if(current_article_id <= 1){
+			//hide/disable/remove the link
 		}else{
-			elem.show();
+			//show/enable/append the link
+			$(this.el).append("<a id='previous_link' href='#" + (current_article_id-1) + "'>Previous</a>");
+		}
+		//should we show link to next?
+		if(current_article_id >= getArticle().id){
+			//hide/disable/remove the link
+		}else{
+			//show/enable/append the link
+			$(this.el).append("<a id='next_link' href='#" + (current_article_id+1) + "'>Next</a>");
 		}
 		
 		return this;
 	},
 	previousItem: function(){
 		//show the next article
-		current_article_id = current_article_id - 1;
-		this.notifyAll();
-		this.update();
-		return false;
+		this.notifyAll(); //notify something if needed
+		return true;
 	},
 	nextItem: function(){
 		//show the next article
-		current_article_id = current_article_id + 1;
-		this.notifyAll();
-		this.update();
-		return false;
+		this.notifyAll(); //notify something if needed
+		return true;
 	},
 	notifyAll: function(){
 		for(i=0; i< this.options.observers.length; i++){
 			this.options.observers[i].update();
+		}
+	}
+});
+
+//controller for article related actions
+ArticleController = Backbone.Controller.extend({observers: null,
+	initialize: function(options) {
+		this.observers = options.observers;
+	},
+	routes: {
+		"":		"showRecent",
+		":id":	"getArticle"    // http://some_adress#id
+	},
+	showRecent: function() {
+		//by default show recent article
+		current_article_id = -1;
+		this.notifyAll();
+	},
+	getArticle: function(id) {
+		//navigate to article with specific id 
+		current_article_id = id;
+		this.notifyAll();
+	},
+	notifyAll: function(){
+		for(i=0; i< this.observers.length; i++){
+			this.observers[i].update();
 		}
 	}
 });

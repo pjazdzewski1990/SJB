@@ -4,18 +4,24 @@
 var current_article_id = -1;
 var article_view;
 
-var prev_next_args;
 var prev_next_view;
 
-var nav_args;
 var nav_view;
+
+var router;
+
+var controller;
 
 $(document).ready(function() {
 	article_view = new ArticleView({ el: $("#article") });
 
-	prev_next_args = { el: $("#content"), observers: [article_view] };
+	var prev_next_args = { el: $("#article_nav"), observers: [] };
 	prev_next_view = new PrevNextView(prev_next_args);
 
-	nav_args = { el: $("#nav"), observers: [article_view, prev_next_view] };
+	var nav_args = { el: $("#nav"), observers: [] };
 	nav_view = new NavView(nav_args);
+	
+	var article_controller_args = { observers: [article_view, prev_next_view] };
+	controller = new ArticleController(article_controller_args);
+	Backbone.history.start({pushState: true});
 });
