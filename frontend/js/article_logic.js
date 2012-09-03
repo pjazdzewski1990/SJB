@@ -20,7 +20,7 @@ ArticleView = Backbone.View.extend({
 			title: 		article.title, 
 			date:		article.added,
 			content:	article.content,
-			tags:		"Article tags will be here"
+			comments:	this.parseComments(article.comments)
 		};
 		//set article id 
 		current_article_id = article.id;
@@ -31,6 +31,23 @@ ArticleView = Backbone.View.extend({
         this.el.html( template );
 		
 		return this;
+	},
+	parseComments: function (comments_arr){
+		//parse embedded comments into HTML 
+		var html = "<div>";
+		for(var i=0;i<comments_arr.length;i++){
+			var vars = {
+				author: 	comments_arr[i].author, 
+				date:		comments_arr[i].date,
+				comment:	comments_arr[i].comment
+			};
+			var template = _.template( $("#comment_template").html(), vars );
+			// Load the compiled HTML 
+			html+=template;
+		}
+		
+		html += "</div>";
+		return html;
 	}
 });
 
@@ -113,7 +130,7 @@ ArticleController = Backbone.Controller.extend({observers: null,
 		this.notifyAll();
 	},
 	notifyAll: function(){
-		for(i=0; i< this.observers.length; i++){
+		for(var i=0; i< this.observers.length; i++){
 			this.observers[i].update();
 		}
 	}

@@ -34,7 +34,14 @@
 			<h2 id="article_title" class="title"><%= title %></h2> 
 			<p id="article_date" class="meta"><%= date %></p> 
 			<p id="article_content"><%= content %></p> 
-			<p id="article_tags"><%= tags %></p> 
+			<p id="article_tags"></p> 
+			<div class="line"></div> 
+			<p id="article_comments"><%= comments %></p>
+		</script>
+		
+		<script type="text/template" id="comment_template">
+			<p class="comment_header" class="meta"><%= date %> <%= author %></p> 
+			<p class="comment_body"><%= comment %></p>
 		</script>
 		
 		<script type="text/template" id="nav_template">
