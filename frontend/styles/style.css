@@ -69,10 +69,13 @@ p { margin: 0 0 15px 0; }
 .more-link { display: block; margin: 20px 0 0 0; }
 
 /* -------------- */
-/* -- Articles -- */
+/* -- Comments -- */
 /* -------------- */
 .comment_header { margin: 0 0 -2px 0; font-size: 15px; }
 .comment_body { margin: 0px 10px 10px 20px; font-size: 12px; }
+#new_comment_nick { margin-left: 20px; width: 35%; resize: none;}
+#new_comment_content { margin-left: 20px; width: 95%; height: 30%; resize: none; }
+#submit_comment_button { margin-left: 20px; }
 
 /* ------------------ */
 /* -- Testimonials -- */

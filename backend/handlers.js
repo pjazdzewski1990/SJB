@@ -4,6 +4,7 @@ var Server = require('mongodb').Server;
 var url = require("url");
 var client = new Db('blog', new Server('127.0.0.1', 27017, {}));
 var fs = require('fs');
+var qs = require('querystring');
 
 function start(response, request, adr) {
 	console.log("Request handler 'get start' was called.");
@@ -113,8 +114,49 @@ function getArticle(response, request, adr) {
 	}
 }
 
+function addComment(_id, _author, _comment) {
+	var update = function(err, collection) {
+			var dt = new Date();
+			var _date = dt.getFullYear() + "/" + (dt.getMonth() + 1) + "/" + dt.getDate();
+			
+			collection.findAndModify(
+				{id: _id},  																	//query
+				[['_id','asc']], 																//sort
+				{$push: {comments: {author:_author, comment:_comment, date:_date}}},	//update
+				{},																				//options
+                function(err, object) {															//fail callback
+					console.log("Error while adding comment: " + err + " " + object);
+				}
+			);
+			client.close();
+		};
+	
+	client.open(function(err, pClient) {
+		client.collection('article', update);
+	});
+}
+
+function postComment(response, request, adr) {	
+	var data = "";
+	//load post data in chunks
+	request.on("data", function(chunk) {
+		data += chunk;
+    });
+
+    request.on("end", function() {
+        var params = qs.parse(data);
+
+		response.writeHead(200, {"Content-Type": "text/html"});
+	
+		addComment(parseInt(params.article), params.author, params.comment);
+	
+		response.end();
+    });
+}
+
 exports.start = start;
 exports.style = style;
 exports.js = js;
 exports.image = image;
 exports.getArticle = getArticle;
+exports.postComment = postComment;

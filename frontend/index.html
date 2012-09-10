@@ -37,6 +37,13 @@
 			<p id="article_tags"></p> 
 			<div class="line"></div> 
 			<p id="article_comments"><%= comments %></p>
+			<p id="new_comment">
+				<form id="new_comment">
+					<textarea rows="1" id="new_comment_nick" >Your Nick</textarea><br />
+					<textarea rows="5" id="new_comment_content" >Your Comment</textarea><br />
+					<input id="submit_comment_button" type="submit" value="Submit" />
+				</form>
+			</p>
 		</script>
 		
 		<script type="text/template" id="comment_template">

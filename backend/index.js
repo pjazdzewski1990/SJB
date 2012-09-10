@@ -6,6 +6,7 @@ var handlers = require("./handlers");
 var handle = {}
 handle["/"] = {'get':handlers.start};
 handle["/article"] = {'get':handlers.getArticle};
+handle["/comment"] = {'post':handlers.postComment};
 
 handle["/styles/style.css"] = {'get':handlers.style};
 handle["/styles/reset.css"] = {'get':handlers.style};

@@ -32,6 +32,9 @@ ArticleView = Backbone.View.extend({
 		
 		return this;
 	},
+	events: {
+      'click #submit_comment_button': 'submitComment'
+    },
 	parseComments: function (comments_arr){
 		//parse embedded comments into HTML 
 		var html = "<div>";
@@ -48,7 +51,31 @@ ArticleView = Backbone.View.extend({
 		
 		html += "</div>";
 		return html;
-	}
+	},
+	submitComment: function(obj){
+		//prepare quesrystring
+		var params = "article=" + current_article_id;
+		params += "&";
+		params += "author=" + encodeURIComponent(document.getElementById("new_comment_nick").value);
+		params += "&";
+		params += "comment=" + encodeURIComponent(document.getElementById("new_comment_content").value);
+
+		var model = this;
+		var adr = "comment"; 
+		
+		var request = createHttpObject();
+		//request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		request.open("POST", adr, true);
+		request.onreadystatechange = function() {
+			if(request.readyState == 4 && request.status == 200) {
+				//make sure the view is updated
+				model.update();
+			}
+		}
+		request.send(params);
+		
+		return false;
+	} 
 });
 
 //view respoonsible for rendering and handling next/prevoius article buttons
